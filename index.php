@@ -1,3 +1,13 @@
+<?php
+    // session_start();
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +15,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Calculadora</title>
+    <title>Calculadora con PHP</title>
 
 </head>
 <body>
     <div class="form-container">
         <h1>Calculadora</h1>
         <form action="index.php" method="POST">
-            <input type="number" name="numero1" placeholder="Numero 1">
-            <input type="number" name="numero2" placeholder="Numero 2">
+            <input type="number" name="resultado" value="">
             <br>
+            <div class="contenedor-botones">
+                <button type="submit" name="numero" value="0">0</button>
+                <button type="submit" name="numero" value="1">1</button>
+                <button type="submit" name="numero" value="2">2</button>
+                <button type="submit" name="numero" value="3">3</button>
+                <button type="submit" name="numero" value="4">4</button>
+                <button type="submit" name="numero" value="5">5</button>
+                <button type="submit" name="numero" value="6">6</button>
+                <button type="submit" name="numero" value="7">7</button>
+                <button type="submit" name="numero" value="8">8</button>
+                <button type="submit" name="numero" value="9">9</button>
+            </div>
             <label>Operacion</label>
             <select name="operacion" >
                 <option value="suma">Suma</option>
@@ -28,9 +49,6 @@
             <input type="submit" value="Resultado">
         </form>
     </div>
-
-  
-    
     <?php
     
    if (($_POST['numero1'])){
