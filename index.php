@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     function sumar ($numero1,$numero2){
         $_SESSION['n1']=$numero1+$numero2;
     };
@@ -22,20 +22,47 @@
         $_SESSION['n1']=pow($numero1,$numero2);
     };
 
-    if(isset($_SESSION['numero'])){
+    if(isset($_POST['numero'])){
         if($_POST['numero']=='C'){
             $_SESSION['n1'] = null;
         }
         else if($_POST['numero']=='+'||$_POST['numero']=='-'||$_POST['numero']=='/'||$_POST['numero']=='*'||$_POST['numero']=='^' ){
-            $_SESSION['valor']==$_SESSION['n1'];
+            $_SESSION['valor1']=$_SESSION['n1'];
             $_SESSION['operacion'] = $_POST['numero'];
             $_SESSION['n1'] = null;
         }
+        else if($_POST['numero'] == "="){
+            $_SESSION['valor2'] = $_SESSION['n1'];
+            switch ($_SESSION['operacion']) {
+                case '+':
+                    sumar($_SESSION['valor1'], $_SESSION['valor2']);
+                    break;
+                case '-':
+                    restar($_SESSION['valor1'], $_SESSION['valor2']);
+                    break;
+                case '/':
+                    dividir($_SESSION['valor1'], $_SESSION['valor2']);
+                    break;
+                case '*':
+                    multiplicar($_SESSION['valor1'], $_SESSION['valor2']);
+                    break;
+                case '^':
+                    potencia($_SESSION['valor1'], $_SESSION['valor2']);
+                    break;
+            }
 
+        }
+        else{
+            if (isset($_SESSION['n1'])) {
+                $_SESSION['n1'] .= $_POST['numero'];
+                echo $_SESSION['n1'];
+            } 
+            else {
+                $_SESSION['n1'] =  $_POST['numero'];
+                echo $_SESSION['n1'];
+            };
+        };
     };
-
-
-
 
 ?>
 
@@ -53,8 +80,8 @@
 <body>
     <div class="form-container">
         <h1>Calculadora</h1>
-        <form action="index.php" method="POST">
-            <input type="number" name="resultado" value="">
+        <form method="POST">
+            <input type="number" name="resultado" value="<?php echo isset($_SESSION['n1']) ? $_SESSION['n1'] :0;?>" >
             <br>
             <div class="contenedor-botones">
                 <button type="submit" name="numero" value="0">0</button>
@@ -73,52 +100,12 @@
                 <button type="submit" name="numero" value="*">*</button>
                 <button type="submit" name="numero" value="^">^</button>
                 <button type="submit" name="numero" value="C">C</button>
+    
             </div>
-            <input class="button" type="submit" value="Resultado">
+            <button class="button" type="submit" name="numero" value="=">Resultado</button>
         </form>
     </div>
-    <?php
-    
-   if (($_POST['numero1'])){
-    $operacion = $_POST['operacion'];
-    $numero1 = $_POST['numero1'];
-    $numero2 = $_POST['numero2'];
-    
-    switch ($operacion) {
-        case 'suma':
-                $resultado = $numero1 + $numero2;
-            break;
-
-        case 'resta':
-                $resultado = $numero1 - $numero2;
-            break;
-        case 'multiplicacion':
-                $resultado = $numero1 * $numero2;
-            break;
-        case 'division':
-                if($numero1!==0 && $numero2!==0){
-                    $resultado = $numero1 / $numero2;
-                }
-
-                else {
-                    echo 'No se puede dividir entre cero';
-                }  
-            break;
-        case 'potencia':
-                $resultado = pow($numero1,$numero2);
-            break;
-        case 'raiz':
-                $resultado = sqrt($numero1);
-            break;
-            case 'modulo':
-                $resultado = $numero1 % $numero2;
-            break;
-    }
-    echo 'El resultado es: ',$resultado;
-
-   };
-
-?>
+ 
 </body>
 </html>
 
