@@ -1,28 +1,39 @@
 <?php
     // session_start();
     function sumar ($numero1,$numero2){
-        $_SESSION=$numero1+$numero2;
-    }
+        $_SESSION['n1']=$numero1+$numero2;
+    };
 
     function restar ($numero1,$numero2){
-        $_SESSION=$numero1-$numero2;
-    }
+        $_SESSION['n1']=$numero1-$numero2;
+    };
     function dividir ($numero1,$numero2){
         if($numero2==0){
-            $_SESSION = "No se puede dividir entre 0";
+            $_SESSION['n1'] = "No se puede dividir entre 0";
         }
         else{
-            $_SESSION=$numero1/$numero2;
+            $_SESSION['n1']=$numero1/$numero2;
         }
-    }
+    };
     function multiplicar ($numero1,$numero2){
-        $_SESSION=$numero1*$numero2;
-    }
+        $_SESSION['n1']=$numero1*$numero2;
+    };
     function potencia ($numero1,$numero2){
-        $_SESSION=pow($numero1,$numero2);
-    }
+        $_SESSION['n1']=pow($numero1,$numero2);
+    };
 
-    
+    if(isset($_SESSION['numero'])){
+        if($_POST['numero']=='C'){
+            $_SESSION['n1'] = null;
+        }
+        else if($_POST['numero']=='+'||$_POST['numero']=='-'||$_POST['numero']=='/'||$_POST['numero']=='*'||$_POST['numero']=='^' ){
+            $_SESSION['valor']==$_SESSION['n1'];
+            $_SESSION['operacion'] = $_POST['numero'];
+            $_SESSION['n1'] = null;
+        }
+
+    };
+
 
 
 
