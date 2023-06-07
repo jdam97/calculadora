@@ -1,7 +1,28 @@
 <?php
     // session_start();
+    function sumar ($numero1,$numero2){
+        $_SESSION=$numero1+$numero2;
+    }
 
+    function restar ($numero1,$numero2){
+        $_SESSION=$numero1-$numero2;
+    }
+    function dividir ($numero1,$numero2){
+        if($numero2==0){
+            $_SESSION = "No se puede dividir entre 0";
+        }
+        else{
+            $_SESSION=$numero1/$numero2;
+        }
+    }
+    function multiplicar ($numero1,$numero2){
+        $_SESSION=$numero1*$numero2;
+    }
+    function potencia ($numero1,$numero2){
+        $_SESSION=pow($numero1,$numero2);
+    }
 
+    
 
 
 
@@ -35,18 +56,14 @@
                 <button type="submit" name="numero" value="7">7</button>
                 <button type="submit" name="numero" value="8">8</button>
                 <button type="submit" name="numero" value="9">9</button>
+                <button type="submit" name="numero" value="-">-</button>
+                <button type="submit" name="numero" value="+">+</button>
+                <button type="submit" name="numero" value="/">/</button>
+                <button type="submit" name="numero" value="*">*</button>
+                <button type="submit" name="numero" value="^">^</button>
+                <button type="submit" name="numero" value="C">C</button>
             </div>
-            <label>Operacion</label>
-            <select name="operacion" >
-                <option value="suma">Suma</option>
-                <option value="resta">Resta</option>
-                <option value="multiplicacion">Multiplicacion</option>
-                <option value="division">Division</option>
-                <option value="potencia">Potencia</option>
-                <option value="raiz">Raiz</option>
-                <option value="modulo">Modulo</option>
-            </select><br>
-            <input type="submit" value="Resultado">
+            <input class="button" type="submit" value="Resultado">
         </form>
     </div>
     <?php
