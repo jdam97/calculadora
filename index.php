@@ -10,6 +10,7 @@
     function dividir ($numero1,$numero2){
         if($numero2==0){
             $_SESSION['n1'] = "No se puede dividir entre 0";
+
         }
         else{
             $_SESSION['n1']=$numero1/$numero2;
@@ -55,11 +56,9 @@
         else{
             if (isset($_SESSION['n1'])) {
                 $_SESSION['n1'] .= $_POST['numero'];
-                echo $_SESSION['n1'];
             } 
             else {
                 $_SESSION['n1'] =  $_POST['numero'];
-                echo $_SESSION['n1'];
             };
         };
     };
@@ -81,7 +80,7 @@
     <div class="form-container">
         <h1>Calculadora</h1>
         <form method="POST">
-            <input type="number" name="resultado" value="<?php echo isset($_SESSION['n1']) ? $_SESSION['n1'] :0;?>" >
+            <input type="text" name="resultado" value="<?php echo isset($_SESSION['n1']) ? $_SESSION['n1'] :0;?>" >
             <br>
             <div class="contenedor-botones">
                 <button type="submit" name="numero" value="0">0</button>
